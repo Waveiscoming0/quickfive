@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="fr-BE">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nonante — Agence IA pour les indépendants & PME wallons</title>
+<meta name="description" content="Nonante aide les indépendants, artisans et PME de Wallonie à créer leur présence en ligne et automatiser leur gestion grâce à l'IA. Site web, chatbot 24/7, automatisations." />
+
+<!-- Open Graph (aperçu quand on partage le lien) -->
+<meta property="og:title" content="Nonante — L'IA au service des indépendants wallons" />
+<meta property="og:description" content="Présence en ligne + automatisation par l'IA. Concentrez-vous sur votre métier, on s'occupe du reste." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_BE" />
+
+<!-- Police Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   NONANTE — Feuille de style
+   Thème : dark navy + accents gradient bleu→violet (style TimeX)
+   ========================================================= */
+
+:root{
+  /* Couleurs */
+  --bg:            #0b1121;
+  --bg-2:          #0a0f1e;
+  --card:          #141c30;
+  --card-2:        #111829;
+  --border:        rgba(255,255,255,0.06);
+  --border-strong: rgba(255,255,255,0.12);
+  --text:          #ffffff;
+  --muted:         #94a3b8;
+  --muted-2:       #64748b;
+  --blue:          #4f6ef7;
+  --violet:        #7c5cfc;
+  --grad:          linear-gradient(135deg, #4f6ef7 0%, #7c5cfc 100%);
+  --grad-soft:     linear-gradient(135deg, rgba(79,110,247,.15), rgba(124,92,252,.15));
+
+  /* Mesures */
+  --maxw: 1180px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+ul{ list-style:none; }
+
+/* ---------- Conteneur ---------- */
+.container{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+/* ---------- Texte en gradient ---------- */
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------- Badge "pilule" ---------- */
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 16px;
+  font-size:13px; font-weight:600; letter-spacing:.04em;
+  color:#c7d2fe;
+  background:rgba(79,110,247,.08);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius-pill);
+  text-transform:uppercase;
+}
+.badge .dot{ width:6px; height:6px; border-radius:50%; background:var(--grad); }
+
+/* ---------- Boutons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 26px;
+  font-size:15px; font-weight:600;
+  border-radius:var(--radius-pill);
+  cursor:pointer; border:none;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn svg{ transition:transform .25s ease; }
+.btn:hover svg{ transform:translateX(4px); }
+
+.btn-primary{
+  background:var(--grad);
+  color:#fff;
+  box-shadow:0 8px 30px rgba(79,110,247,.35);
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 38px rgba(79,110,247,.5); }
+
+.btn-ghost{
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  border:1px solid var(--border-strong);
+}
+.btn-ghost:hover{ background:rgba(255,255,255,.08); transform:translateY(-2px); }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(10,15,30,.8);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:74px; }
+
+.logo{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; letter-spacing:-.02em; }
+.logo-mark{
+  width:34px; height:34px; border-radius:10px;
+  background:var(--grad);
+  display:grid; place-items:center;
+  box-shadow:0 6px 18px rgba(79,110,247,.4);
+}
+.logo-mark svg{ width:18px; height:18px; }
+
+.nav-links{ display:flex; align-items:center; gap:34px; }
+.nav-links a{ color:var(--muted); font-size:15px; font-weight:500; transition:color .2s ease; }
+.nav-links a:hover{ color:#fff; }
+
+.nav-cta{ display:flex; align-items:center; gap:14px; }
+.nav-cta .btn{ padding:11px 20px; font-size:14px; }
+
+/* Burger mobile */
+.burger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.burger span{ width:24px; height:2px; background:#fff; border-radius:2px; transition:.3s; }
+
+/* ============================================================
+   FOND : grille de points + lueur radiale
+   ============================================================ */
+.dotgrid{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size:34px 34px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:160px 0 0;
+  text-align:center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 8%, rgba(124,92,252,.18), transparent 70%),
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(79,110,247,.16), transparent 65%);
+  overflow:hidden;
+}
+.hero-content{ position:relative; z-index:2; max-width:840px; margin:0 auto; }
+
+.hero h1{
+  font-size:clamp(40px, 7vw, 78px);
+  font-weight:900; line-height:1.04; letter-spacing:-.03em;
+  margin:28px 0 24px;
+}
+.hero p.lead{
+  font-size:clamp(17px,2.4vw,20px); color:var(--muted);
+  max-width:620px; margin:0 auto 38px;
+}
+.hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* bande de réassurance */
+.hero-trust{
+  position:relative; z-index:2;
+  margin-top:64px; padding-bottom:40px;
+  display:flex; gap:48px; justify-content:center; flex-wrap:wrap;
+}
+.hero-trust .stat{ text-align:center; }
+.hero-trust .stat b{ display:block; font-size:30px; font-weight:800; }
+.hero-trust .stat span{ font-size:14px; color:var(--muted); }
+
+/* lueur + courbe en bas du hero (le "soleil bleu" du style TimeX) */
+.hero-glow{
+  position:absolute; left:50%; bottom:-58%; transform:translateX(-50%);
+  width:120%; height:90%;
+  background:radial-gradient(ellipse at center, rgba(79,110,247,.55) 0%, rgba(124,92,252,.25) 35%, transparent 70%);
+  border-radius:50%;
+  filter:blur(20px);
+  z-index:1;
+}
+.wave{ position:relative; z-index:2; display:block; width:100%; height:auto; margin-top:30px; }
+
+/* ============================================================
+   SECTIONS génériques
+   ============================================================ */
+section{ position:relative; }
+.section{ padding:110px 0; }
+.section-head{ text-align:center; max-width:680px; margin:0 auto 64px; }
+.section-head .badge{ margin-bottom:20px; }
+.section-head h2{
+  font-size:clamp(30px,4.4vw,46px); font-weight:800; letter-spacing:-.02em; line-height:1.1;
+}
+.section-head p{ color:var(--muted); font-size:17px; margin-top:18px; }
+
+/* ============================================================
+   CARTES SERVICES
+   ============================================================ */
+.grid{ display:grid; gap:22px; }
+.grid-3{ grid-template-columns:repeat(3,1fr); }
+.grid-2{ grid-template-columns:repeat(2,1fr); }
+
+.card{
+  position:relative;
+  background:linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:34px 30px;
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  overflow:hidden;
+}
+.card::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 50% 0%, rgba(79,110,247,.14), transparent 60%);
+  opacity:0; transition:opacity .35s ease;
+}
+.card:hover{ transform:translateY(-6px); border-color:var(--border-strong); box-shadow:0 20px 50px rgba(0,0,0,.4); }
+.card:hover::before{ opacity:1; }
+.card > *{ position:relative; z-index:1; }
+
+.icon-box{
+  width:54px; height:54px; border-radius:14px;
+  display:grid; place-items:center;
+  background:var(--grad-soft);
+  border:1px solid var(--border-strong);
+  margin-bottom:22px;
+}
+.icon-box svg{ width:26px; height:26px; stroke:#a5b4fc; }
+.card h3{ font-size:20px; font-weight:700; margin-bottom:10px; }
+.card p{ color:var(--muted); font-size:15px; }
+
+/* ============================================================
+   MÉTHODE (étapes)
+   ============================================================ */
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.step{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); padding:32px 26px; position:relative;
+}
+.step-num{
+  font-size:14px; font-weight:700; color:#a5b4fc;
+  display:inline-block; padding:5px 12px; border-radius:var(--radius-pill);
+  background:var(--grad-soft); border:1px solid var(--border-strong); margin-bottom:18px;
+}
+.step h3{ font-size:18px; font-weight:700; margin-bottom:8px; }
+.step p{ color:var(--muted); font-size:14px; }
+
+/* ============================================================
+   COMPARATIF
+   ============================================================ */
+.compare{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.compare-col{ border-radius:var(--radius-lg); padding:34px 30px; border:1px solid var(--border); }
+.compare-col.win{
+  background:linear-gradient(180deg, rgba(79,110,247,.12), rgba(124,92,252,.06));
+  border-color:rgba(124,92,252,.35);
+  box-shadow:0 20px 60px rgba(79,110,247,.15);
+}
+.compare-col.lose{ background:var(--card-2); }
+.compare-col h3{ display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; margin-bottom:24px; }
+.compare-col ul li{ display:flex; align-items:flex-start; gap:12px; padding:11px 0; color:#cbd5e1; font-size:15px; border-bottom:1px solid var(--border); }
+.compare-col ul li:last-child{ border-bottom:none; }
+.compare-col ul li svg{ width:20px; height:20px; flex-shrink:0; margin-top:2px; }
+.check{ stroke:#34d399; }
+.cross{ stroke:#64748b; }
+
+/* ============================================================
+   TARIFS
+   ============================================================ */
+.pricing{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch; }
+.price-card{
+  position:relative; display:flex; flex-direction:column;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); padding:36px 30px;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.price-card:hover{ transform:translateY(-6px); }
+.price-card.featured{
+  background:linear-gradient(180deg, rgba(79,110,247,.14), rgba(124,92,252,.05));
+  border:1px solid rgba(124,92,252,.45);
+  box-shadow:0 24px 70px rgba(79,110,247,.22);
+}
+.price-tag{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:var(--grad); color:#fff; font-size:12px; font-weight:700;
+  padding:6px 16px; border-radius:var(--radius-pill); letter-spacing:.03em;
+  box-shadow:0 8px 22px rgba(79,110,247,.4);
+}
+.price-card h3{ font-size:20px; font-weight:700; }
+.price-card .desc{ color:var(--muted); font-size:14px; margin:6px 0 22px; min-height:42px; }
+.price{ font-size:42px; font-weight:900; letter-spacing:-.02em; }
+.price small{ font-size:15px; font-weight:500; color:var(--muted); }
+.price-card .sub{ font-size:13px; color:var(--muted-2); margin-bottom:26px; }
+.price-card ul{ margin-bottom:28px; flex:1; }
+.price-card ul li{ display:flex; gap:11px; padding:9px 0; font-size:14.5px; color:#cbd5e1; }
+.price-card ul li svg{ width:19px; height:19px; stroke:#a5b4fc; flex-shrink:0; margin-top:3px; }
+.price-card .btn{ width:100%; justify-content:center; }
+
+/* ============================================================
+   TÉMOIGNAGES
+   ============================================================ */
+.testi{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); padding:32px 30px;
+}
+.testi .stars{ display:flex; gap:3px; margin-bottom:16px; }
+.testi .stars svg{ width:18px; height:18px; fill:#fbbf24; stroke:#fbbf24; }
+.testi p{ font-size:15.5px; color:#e2e8f0; margin-bottom:24px; }
+.testi .who{ display:flex; align-items:center; gap:13px; }
+.testi .avatar{
+  width:46px; height:46px; border-radius:50%; flex-shrink:0;
+  background:var(--grad); display:grid; place-items:center;
+  font-weight:700; font-size:16px;
+}
+.testi .who b{ display:block; font-size:15px; }
+.testi .who span{ font-size:13px; color:var(--muted); }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-wrap{ max-width:760px; margin:0 auto; }
+.faq-item{ border:1px solid var(--border); border-radius:var(--radius); margin-bottom:14px; background:var(--card-2); overflow:hidden; transition:border-color .25s ease; }
+.faq-item.open{ border-color:var(--border-strong); }
+.faq-q{
+  width:100%; text-align:left; background:none; border:none; cursor:pointer;
+  padding:22px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  color:#fff; font-size:16.5px; font-weight:600; font-family:inherit;
+}
+.faq-q .plus{ width:22px; height:22px; flex-shrink:0; transition:transform .3s ease; stroke:#a5b4fc; }
+.faq-item.open .plus{ transform:rotate(45deg); }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.faq-a p{ padding:0 24px 22px; color:var(--muted); font-size:15px; }
+
+/* ============================================================
+   CTA FINALE
+   ============================================================ */
+.cta-final{ padding:0 0 110px; }
+.cta-box{
+  position:relative; overflow:hidden; text-align:center;
+  border-radius:var(--radius-lg); padding:72px 40px;
+  background:
+    radial-gradient(ellipse 70% 120% at 50% 0%, rgba(124,92,252,.3), transparent 60%),
+    linear-gradient(180deg, rgba(79,110,247,.16), rgba(20,28,48,.6));
+  border:1px solid rgba(124,92,252,.3);
+}
+.cta-box::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                   linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 60% 80% at 50% 30%, #000, transparent 75%);
+  mask-image:radial-gradient(ellipse 60% 80% at 50% 30%, #000, transparent 75%);
+}
+.cta-box > *{ position:relative; z-index:1; }
+.cta-box h2{ font-size:clamp(30px,4.6vw,48px); font-weight:900; letter-spacing:-.02em; line-height:1.08; margin-bottom:18px; }
+.cta-box p{ color:var(--muted); font-size:18px; max-width:520px; margin:0 auto 34px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ border-top:1px solid var(--border); padding:60px 0 40px; }
+.foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+.foot-grid p{ color:var(--muted); font-size:14.5px; margin-top:16px; max-width:300px; }
+.foot-col h4{ font-size:14px; font-weight:700; margin-bottom:16px; color:#fff; }
+.foot-col a{ display:block; color:var(--muted); font-size:14.5px; padding:6px 0; transition:color .2s; }
+.foot-col a:hover{ color:#fff; }
+.foot-bottom{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  padding-top:28px; border-top:1px solid var(--border);
+  color:var(--muted-2); font-size:13.5px;
+}
+
+/* ============================================================
+   ANIMATIONS au scroll
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:960px){
+  .grid-3, .steps, .pricing{ grid-template-columns:repeat(2,1fr); }
+  .foot-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:760px){
+  .nav-links, .nav-cta .btn{ display:none; }
+  .burger{ display:flex; }
+  .nav.open .nav-links{
+    display:flex; flex-direction:column; gap:20px;
+    position:absolute; top:74px; left:0; right:0;
+    background:rgba(10,15,30,.97); backdrop-filter:blur(14px);
+    padding:30px 24px; border-bottom:1px solid var(--border);
+  }
+  .grid-3, .grid-2, .steps, .pricing, .compare, .foot-grid{ grid-template-columns:1fr; }
+  .section{ padding:80px 0; }
+  .hero{ padding:130px 0 0; }
+  .hero-trust{ gap:32px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================ NAVBAR ============================ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+      </span>
+      Nonante
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#methode">Méthode</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#temoignages">Avis</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">
+        Réserver un appel
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="dotgrid"></div>
+  <div class="container hero-content">
+    <span class="badge"><span class="dot"></span>Agence IA · Wallonie</span>
+    <h1>L'IA au service des<br><span class="grad-text">indépendants wallons</span></h1>
+    <p class="lead">On crée votre présence en ligne et on automatise votre gestion grâce à l'intelligence artificielle. Vous, vous vous concentrez sur ce que vous faites de mieux.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">
+        Réserver un appel gratuit
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#services" class="btn btn-ghost">Découvrir nos services</a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="stat"><b class="grad-text">+30</b><span>entreprises accompagnées</span></div>
+      <div class="stat"><b class="grad-text">24/7</b><span>chatbot toujours dispo</span></div>
+      <div class="stat"><b class="grad-text">7 j</b><span>pour lancer votre site</span></div>
+    </div>
+  </div>
+
+  <div class="hero-glow"></div>
+  <!-- séparateur courbe (vague) -->
+  <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,80 C360,20 1080,20 1440,80 L1440,120 L0,120 Z" fill="#0b1121"/>
+    <path d="M0,80 C360,20 1080,20 1440,80" fill="none" stroke="rgba(124,92,252,.5)" stroke-width="1.5"/>
+  </svg>
+</header>
+
+<!-- ============================ SERVICES ============================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>Services</span>
+      <h2>Ce qu'on met en place pour vous</h2>
+      <p>Des outils concrets, pensés pour les artisans, commerçants et professions libérales. Pas de jargon : juste des résultats.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <!-- 1 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
+        <h3>Site web sur-mesure</h3>
+        <p>Un site moderne, rapide et qui inspire confiance, conçu pour transformer vos visiteurs en clients. Prêt en quelques jours.</p>
+      </div>
+      <!-- 2 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div>
+        <h3>Chatbot IA 24/7</h3>
+        <p>Un assistant intelligent qui répond à vos clients jour et nuit, prend les rendez-vous et ne rate plus jamais une demande.</p>
+      </div>
+      <!-- 3 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/></svg></div>
+        <h3>Automatisation de la gestion</h3>
+        <p>Devis, factures, rappels, relances clients… On automatise les tâches répétitives pour vous faire gagner des heures chaque semaine.</p>
+      </div>
+      <!-- 4 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4 10.5l5.8 1.9L11.7 18l1.9-5.8L19 10.3l-5.8-1.9zM5 3v4M19 17v4M3 5h4M17 19h4"/></svg></div>
+        <h3>Contenu & réseaux sociaux</h3>
+        <p>Des publications régulières générées par l'IA et validées par nos soins, pour rester visible sans y passer vos soirées.</p>
+      </div>
+      <!-- 5 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Référencement local (Google)</h3>
+        <p>On vous rend visible auprès des clients près de chez vous : fiche Google, mots-clés locaux, avis. Soyez le premier choix de votre région.</p>
+      </div>
+      <!-- 6 -->
+      <div class="card reveal">
+        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+        <h3>Emails & devis automatiques</h3>
+        <p>Réponses, confirmations et devis envoyés automatiquement au bon moment. Vos clients se sentent suivis, vous gardez le contrôle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MÉTHODE ============================ -->
+<section class="section" id="methode" style="background:linear-gradient(180deg, transparent, rgba(79,110,247,.04), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>Notre méthode</span>
+      <h2>Simple, rapide, sans prise de tête</h2>
+      <p>De la première discussion à votre croissance, on vous accompagne pas à pas. Vous n'avez rien de technique à gérer.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">Étape 1</span>
+        <h3>On discute</h3>
+        <p>Un appel gratuit de 20 min pour comprendre votre métier, vos clients et vos besoins réels.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Étape 2</span>
+        <h3>On construit</h3>
+        <p>On crée votre site et vos outils IA, sur-mesure, en quelques jours. Vous validez, on ajuste.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Étape 3</span>
+        <h3>On automatise</h3>
+        <p>Chatbot, relances, contenu : on met en place les automatisations qui travaillent pour vous, 24h/24.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">Étape 4</span>
+        <h3>Vous grandissez</h3>
+        <p>On suit les résultats et on optimise chaque mois. Vous gagnez du temps et des clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPARATIF ============================ -->
+<section class="section" id="comparatif">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>Comparatif</span>
+      <h2>Pourquoi choisir Nonante</h2>
+      <p>La différence entre galérer seul (ou avec une agence classique) et avoir une équipe locale qui maîtrise l'IA.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col win reveal">
+        <h3>
+          <span class="logo-mark" style="width:28px;height:28px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          Avec Nonante
+        </h3>
+        <ul>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Site en ligne en moins de 7 jours</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Outils IA qui travaillent même la nuit</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Interlocuteur local qui parle votre langue</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Tarifs clairs, pas de mauvaise surprise</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Suivi et optimisation chaque mois</li>
+          <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Zéro compétence technique requise</li>
+        </ul>
+      </div>
+
+      <div class="compare-col lose reveal">
+        <h3>
+          <span class="icon-box" style="width:28px;height:28px;border-radius:8px;margin:0;background:rgba(255,255,255,.04)"><svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 10 5 10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+          Seul ou agence classique
+        </h3>
+        <ul>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Des semaines (voire des mois) d'attente</li>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Demandes ratées dès que vous êtes occupé</li>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Jargon technique incompréhensible</li>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Devis flous et frais cachés</li>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Site livré puis… plus de nouvelles</li>
+          <li><svg class="cross" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Tout à gérer vous-même</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TARIFS ============================ -->
+<section class="section" id="tarifs" style="background:linear-gradient(180deg, transparent, rgba(124,92,252,.05), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>Tarifs</span>
+      <h2>Un lancement, puis on grandit ensemble</h2>
+      <p>On commence par poser des bases solides, puis l'abonnement maintient votre présence vivante et performante mois après mois.</p>
+    </div>
+
+    <div class="pricing">
+      <!-- Lancement -->
+      <div class="price-card reveal">
+        <h3>Lancement</h3>
+        <p class="desc">La porte d'entrée. On crée votre présence en ligne professionnelle.</p>
+        <div class="price">€890<small> /une fois</small></div>
+        <p class="sub">Paiement unique · livraison en 7 jours</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Site web one-page sur-mesure</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Optimisé mobile & rapide</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fiche Google configurée</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Formulaire de contact</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Commencer
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Croissance (mis en avant) -->
+      <div class="price-card featured reveal">
+        <span class="price-tag">★ Le plus choisi</span>
+        <h3>Croissance</h3>
+        <p class="desc">Votre présence reste vivante. L'IA travaille pour vous, chaque mois.</p>
+        <div class="price">€190<small> /mois</small></div>
+        <p class="sub">Sans engagement · résiliable à tout moment</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Tout le pack Lancement inclus</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Chatbot IA 24/7 sur votre site</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automatisations (devis, relances)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Contenu réseaux sociaux mensuel</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Suivi & optimisation continue</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Réserver un appel
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Sur-mesure -->
+      <div class="price-card reveal">
+        <h3>Sur-mesure</h3>
+        <p class="desc">Pour les projets ambitieux : e-commerce, outils métier, IA avancée.</p>
+        <div class="price">Sur devis</div>
+        <p class="sub">On en discute autour d'un café (ou en visio)</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Site multi-pages ou e-commerce</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automatisations avancées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Intégrations sur-mesure</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Accompagnement prioritaire</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Demander un devis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TÉMOIGNAGES ============================ -->
+<section class="section" id="temoignages">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>Témoignages</span>
+      <h2>Ils nous font confiance</h2>
+      <p>Des indépendants et PME de Wallonie qui ont repris du temps et gagné des clients.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="testi reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <p>« Le chatbot répond à mes clients pendant que je suis sur les chantiers. Je ne perds plus aucune demande, et ça m'a déjà ramené trois nouveaux contrats. »</p>
+        <div class="who"><div class="avatar">MD</div><div><b>Marc D.</b><span>Électricien · Namur</span></div></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <p>« Je n'y connaissais rien en informatique. En une semaine j'avais un site magnifique et mes devis partent tout seuls. Un vrai soulagement. »</p>
+        <div class="who"><div class="avatar">SL</div><div><b>Sophie L.</b><span>Kiné · Liège</span></div></div>
+      </div>
+
+      <div class="testi reveal">
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <p>« Les publications sur les réseaux se font sans que j'y pense, et elles sont vraiment bien. Mon restaurant n'a jamais été aussi visible à Charleroi. »</p>
+        <div class="who"><div class="avatar">KV</div><div><b>Karim V.</b><span>Restaurateur · Charleroi</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="badge"><span class="dot"></span>FAQ</span>
+      <h2>Les questions qu'on nous pose</h2>
+      <p>Et si vous ne trouvez pas votre réponse, l'appel gratuit est là pour ça.</p>
+    </div>
+
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <button class="faq-q">Je n'y connais rien en informatique, c'est un problème ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>Au contraire, c'est exactement pour ça qu'on existe. Vous n'avez rien de technique à gérer : on s'occupe de tout, et on vous explique chaque chose simplement, dans un langage clair.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">En combien de temps mon site est-il en ligne ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>En général moins de 7 jours après notre appel, le temps de récupérer vos infos et vos photos. Pour les projets sur-mesure, on définit ensemble un planning clair dès le départ.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">L'abonnement, c'est vraiment utile ou juste pour payer plus ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>Un site qui ne bouge jamais perd vite de son efficacité. L'abonnement garde votre chatbot, vos automatisations et votre contenu à jour, et on optimise chaque mois pour vous apporter plus de clients. Il est sans engagement : vous arrêtez quand vous voulez.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">Le chatbot IA, comment ça marche concrètement ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>On l'entraîne avec les infos de votre activité (horaires, services, tarifs, FAQ). Il répond ensuite à vos clients 24h/24 sur votre site, peut prendre des rendez-vous et vous transmet les demandes importantes. C'est comme un employé qui ne dort jamais.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">Vous travaillez avec quels types d'entreprises ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>Principalement des indépendants, artisans, commerçants et professions libérales de Wallonie : électriciens, kinés, coiffeurs, restaurateurs, avocats, plombiers… Si vous voulez plus de clients et moins d'administratif, on est faits pour vous.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q">Et si je ne suis pas satisfait ?
+          <svg class="plus" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>On ajuste jusqu'à ce que vous soyez content du résultat. Et comme l'abonnement est sans engagement, vous gardez le contrôle total. Notre but, c'est une relation de confiance sur le long terme.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA FINALE ============================ -->
+<section class="cta-final" id="contact">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="badge" style="margin-bottom:22px"><span class="dot"></span>Prêt à passer à l'IA ?</span>
+      <h2>Concentrez-vous sur votre métier.<br>On s'occupe du reste.</h2>
+      <p>Réservez un appel gratuit de 20 minutes. On regarde ensemble ce que l'IA peut faire pour votre activité — sans engagement, sans jargon.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a href="mailto:bonjour@nonante.be?subject=Je%20veux%20réserver%20un%20appel%20gratuit" class="btn btn-primary">
+          Réserver mon appel gratuit
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="tel:+32470000000" class="btn btn-ghost">Nous appeler</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span>
+          Nonante
+        </a>
+        <p>L'agence IA qui aide les indépendants et PME de Wallonie à créer leur présence en ligne et à automatiser leur gestion.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navigation</h4>
+        <a href="#services">Services</a>
+        <a href="#methode">Méthode</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#services">Site web</a>
+        <a href="#services">Chatbot IA</a>
+        <a href="#services">Automatisation</a>
+        <a href="#services">Réseaux sociaux</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:bonjour@nonante.be">bonjour@nonante.be</a>
+        <a href="tel:+32470000000">+32 470 00 00 00</a>
+        <a href="#">Wallonie, Belgique</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Nonante. Tous droits réservés.</span>
+      <span>Fait avec ❤️ en Wallonie</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Navbar : fond au scroll ===== */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ===== Menu mobile (burger) ===== */
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => nav.classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => nav.classList.remove('open'))
+);
+
+/* ===== FAQ accordéon ===== */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = btn.nextElementSibling;
+    const isOpen = item.classList.contains('open');
+    // ferme tout
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    // ouvre celui cliqué (s'il était fermé)
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ===== Apparition au scroll ===== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i % 3) * 0.08 + 's';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ===== Année dans le footer ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
