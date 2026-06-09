@@ -1,0 +1,12 @@
+# robots.txt — QuickFive
+# Agence IA pour indépendants & PME wallons
+
+# On autorise tous les moteurs de recherche (Google, Bing...) à visiter tout le site
+User-agent: *
+Allow: /
+
+# On bloque le dossier de travail interne (sources, brouillons) : inutile à indexer
+Disallow: /input/
+
+# Plan du site (aide Google à trouver toutes les pages)
+Sitemap: https://quickfive.be/sitemap.xml
